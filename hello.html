@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cool Intro</title>
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#071029;
+      --accent1:#7c5cff;
+      --accent2:#00f0ff;
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+
+    .intro{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(1200px 600px at 10% 20%, rgba(124,92,255,0.12), transparent 10%),
+                 radial-gradient(900px 500px at 95% 80%, rgba(0,240,255,0.06), transparent 12%),
+                 linear-gradient(180deg,var(--bg1),var(--bg2));
+      overflow:hidden;
+      color: #e6eef8;
+      position:relative;
+    }
+
+    .grid-bg{
+      position:absolute;inset:0;pointer-events:none;opacity:0.12;background-image:linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);background-size:100px 100px,100px 100px;animation: drift 20s linear infinite;
+    }
+    @keyframes drift{from{transform:translateY(0) translateX(0)}to{transform:translateY(-80px) translateX(-40px)}}
+
+    .card{
+      width:min(980px,94%);
+      max-width:1200px;
+      padding:clamp(28px,4vw,48px);
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      box-shadow:0 10px 40px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px) saturate(1.1);
+      display:flex;gap:28px;align-items:center;
+      position:relative;z-index:2;overflow:hidden;
+    }
+
+    .visual{
+      flex:0 0 360px;display:flex;flex-direction:column;align-items:flex-start;gap:16px
+    }
+    .logo{
+      width:96px;height:96px;border-radius:18px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;color:white;font-weight:700;font-size:22px;box-shadow:0 8px 30px rgba(92,72,255,0.18), inset 0 -6px 18px rgba(0,0,0,0.18);
+      transform:rotate(-8deg);animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float{0%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-6deg) translateY(-8px)}100%{transform:rotate(-8deg) translateY(0)}}
+
+    h1{font-size:clamp(28px,4.6vw,48px);margin:0;line-height:1.02;letter-spacing:-0.02em}
+    p.lead{margin:0;color:rgba(230,238,248,0.8);max-width:44ch;position:relative;z-index:2}
+
+    .type-container{display:block;min-height:1.2em;}
+    .type{display:inline-block;height:1.08em;vertical-align:bottom}
+    .type .cursor{display:inline-block;width:3px;background:var(--accent2);margin-left:4px;animation: blink 900ms steps(2, start) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    .btns{display:flex;gap:12px;margin-top:14px}
+    .btn{padding:10px 16px;border-radius:12px;font-weight:600;border:0;cursor:pointer;background:var(--glass);color:inherit;backdrop-filter: blur(6px);transition:transform .18s ease,box-shadow .18s}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 8px 30px rgba(124,92,255,0.18);color:#021025}
+
+    .scene{flex:1;min-height:160px;display:grid;place-items:center;position:relative}
+    .orb{
+      width:260px;height:260px;border-radius:50%;background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), transparent 30%), conic-gradient(from 220deg,var(--accent1),var(--accent2));filter:blur(14px);opacity:0.95;transform:scale(.98);animation: spin 18s linear infinite
+    }
+    @keyframes spin{to{transform:rotate(360deg) scale(.98)}}
+
+    .sparkles{position:absolute;inset:0;pointer-events:none}
+    .spark{position:absolute;width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg,white,rgba(255,255,255,0.6));opacity:0;animation: twinkle 2.4s linear infinite}
+    @keyframes twinkle{0%{opacity:0;transform:scale(.2)}40%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(.6)}}
+
+    @media (max-width:880px){.card{flex-direction:column;align-items:center;text-align:center}.visual{align-items:center}.scene{order:-1}.visual{flex:unset}.card{gap:18px}}
+
+    .meta{position:absolute;left:16px;bottom:12px;font-size:12px;color:rgba(230,238,248,0.5)}
+  </style>
+</head>
+<body>
+  <main class="intro">
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <article class="card" role="region" aria-label="Intro card">
+      <div class="visual">
+        <div class="logo" aria-hidden="true">CI</div>
+        <h1>Welcome to <span style="color:var(--accent2)">Cool Intro</span></h1>
+        <p class="lead">A single-file HTML + CSS intro with smooth motion, subtle depth and an attention-grabbing hero. Built to be copy-pasted and customised.</p>
+        <div class="type-container"><span class="type"><span class="cursor"></span></span></div>
+        <div class="btns">
+          <button class="btn primary" id="enterBtn">Enter</button>
+          <button class="btn" id="demoBtn">Demo</button>
+        </div>
+      </div>
+
+      <div class="scene" aria-hidden="true">
+        <div class="orb" id="orb"></div>
+        <div class="sparkles" id="sparkles"></div>
+      </div>
+    </article>
+
+    <div class="meta">Press "Enter" or click the purple button • Single-file</div>
+  </main>
+
+  <script>
+    const phrases = [
+      'design • motion • focus',
+      'fast to copy, easy to customise',
+      'built with love for the web'
+    ];
+    const typeEl = document.querySelector('.type');
+    const cursor = typeEl.querySelector('.cursor');
+
+    let pIndex=0, charIndex=0, forward=true;
+    function typeLoop(){
+      const text = phrases[pIndex];
+      if(forward){
+        charIndex++;
+        typeEl.firstChild && (typeEl.firstChild.data = text.slice(0,charIndex));
+        if(charIndex===text.length){forward=false;setTimeout(typeLoop,1200);return}
+      } else {
+        charIndex--;
+        typeEl.firstChild && (typeEl.firstChild.data = text.slice(0,charIndex));
+        if(charIndex===0){forward=true;pIndex=(pIndex+1)%phrases.length;setTimeout(typeLoop,300);return}
+      }
+      setTimeout(typeLoop,80 + Math.random()*40);
+    }
+    typeEl.insertBefore(document.createTextNode(''), cursor);
+    setTimeout(typeLoop,600);
+
+    const sparkles = document.getElementById('sparkles');
+    function spawnSpark(){
+      const s = document.createElement('div'); s.className='spark';
+      const x = Math.random()*100; const y = Math.random()*100;
+      s.style.left = x+'%'; s.style.top = y+'%';
+      s.style.animationDelay = (Math.random()*1.8)+'s';
+      s.style.transform = 'translate(-50%,-50%) scale('+(0.5+Math.random()*1.2)+')';
+      sparkles.appendChild(s);
+      setTimeout(()=>s.remove(), 3600);
+    }
+    for(let i=0;i<10;i++) setTimeout(spawnSpark, i*220);
+    setInterval(spawnSpark, 1400);
+
+    function enter(){
+      const card = document.querySelector('.card');
+      card.style.transition='transform 700ms cubic-bezier(.2,.9,.2,1), opacity 600ms';
+      card.style.transform='translateY(-18px) scale(.98)';
+      card.style.opacity='0';
+      setTimeout(()=>{
+        const main = document.querySelector('.intro');
+        main.innerHTML = '<div style="display:grid;place-items:center;height:100vh;color:var(--accent2);font-size:22px"><div><strong>Welcome inside —</strong><div style="opacity:.85;margin-top:8px">This is demo content. Paste your site here.</div></div></div>';
+      },650);
+    }
+    document.getElementById('enterBtn').addEventListener('click', enter);
+    document.getElementById('demoBtn').addEventListener('click', ()=>alert('Demo button — replace with your action'));
+    document.addEventListener('keydown', e=>{ if(e.key==='Enter') enter(); })
+  </script>
+</body>
+</html>
