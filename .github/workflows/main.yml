@@ -1,0 +1,15 @@
+name: s3-code-push
+on:  
+  push:
+    branches: 
+      - "prod"
+jobs: 
+  sync-s3-job:
+    name: push to s3 job
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello world
+        env:
+          NAME: SALEH
+        run: |
+          echo hello world $NAME 
