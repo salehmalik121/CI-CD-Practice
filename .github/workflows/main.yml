@@ -16,4 +16,4 @@ jobs:
         run: |
           echo deploying changes to s3 on ${{env.AWS_REGION}} &&
           ls . &&
-          aws s3 sync . s3://amz-s3-2193829183812093/hello.html
+          aws s3 sync . s3://amz-s3-2193829183812093/
