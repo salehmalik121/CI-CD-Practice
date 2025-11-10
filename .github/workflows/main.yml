@@ -6,6 +6,7 @@ on:
 jobs: 
   sync-s3-job:
     name: push to s3 job
+    environment: secrets
     runs-on: ubuntu-latest
     steps:
       - name: checkout to code
