@@ -6,13 +6,17 @@ on:
 jobs: 
   sync-s3-job:
     name: push to s3 job
+    environment: secrets
     runs-on: ubuntu-latest
     steps:
-      - name: hello world
-        env:
-          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          AWS_REGION: us-east-1
+      - name: checkout to code
+        uses: actions/checkout@v3
+
+      - name: pushing new code to s3
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-1"
         run: |
           echo deploying changes to s3 on ${{env.AWS_REGION}} &&
           aws s3 sync . s3://amz-s3-2193829183812093/ --exclude "./github/*" --exclude "README.md" --exclude "./git/*"
