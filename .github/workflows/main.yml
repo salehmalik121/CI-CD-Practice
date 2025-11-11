@@ -18,5 +18,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "us-east-1"
         run: |
-          echo deploying changes to S3 ${#AWS_ACCESS_KEY_ID}
-           aws s3 sync . s3://amz-s3-2193829183812093/ --exclude "./github/*" --exclude "README.md" --exclude "./git/*"
+          echo deploying changes to s3 on ${{env.AWS_REGION}} &&
+          aws s3 sync . s3://amz-s3-2193829183812093/ --exclude "./github/*" --exclude "README.md" --exclude "./git/*"

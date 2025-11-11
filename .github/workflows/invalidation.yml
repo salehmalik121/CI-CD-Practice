@@ -1,0 +1,20 @@
+name: invalidation workflow
+on: 
+  push:
+    branches: 
+      - "prod"
+    paths: 
+      - "**.html"
+jobs:
+  setInvalidation:
+    runs-on: "ubuntu-latest" 
+    environment: "secrets"
+    steps:
+      - name: "setting invalidation on cloud front"
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run : |
+          aws cloudfront create-invalidation \
+          --distribution-id E3IV2RXLRHLO3W \
+          --paths "/*"
